@@ -75,7 +75,7 @@ endif()
 #    Extracted from:
 #    http://llvm.org/docs/CMake.html#embedding-llvm-in-your-project
 #===============================================================================
-list(APPEND CMAKE_PREFIX_PATH "${CT_Clang_INSTALL_DIR}/lib/cmake-${Clang_VERSION_MAJOR}/clang/")
+list(APPEND CMAKE_PREFIX_PATH "${CT_Clang_INSTALL_DIR}/lib/cmake/clang-${Clang_VERSION_MAJOR}/")
 
 find_package(Clang REQUIRED CONFIG)
 
