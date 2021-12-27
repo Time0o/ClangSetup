@@ -60,14 +60,18 @@ set(CT_Clang_INSTALL_DIR "${CT_CLANG_PACKAGE_DIR}" CACHE PATH
 #===============================================================================
 set(CT_LLVM_INCLUDE_DIR "${CT_Clang_INSTALL_DIR}/include/llvm-${Clang_VERSION_MAJOR}")
 if(NOT EXISTS "${CT_LLVM_INCLUDE_DIR}")
-message(FATAL_ERROR
-  " CT_Clang_INSTALL_DIR (${CT_LLVM_INCLUDE_DIR}) is invalid.")
+  set(CT_LLVM_INCLUDE_DIR "${CT_Clang_INSTALL_DIR}/include/llvm")
+  if(NOT EXISTS "${CT_LLVM_INCLUDE_DIR}")
+    message(FATAL_ERROR " CT_LLVM_INCLUDE_DIR (${CT_LLVM_INCLUDE_DIR}) is invalid.")
+  endif()
 endif()
 
 set(CT_LLVM_CMAKE_FILE "${CT_Clang_INSTALL_DIR}/lib/cmake/clang-${Clang_VERSION_MAJOR}/ClangConfig.cmake")
 if(NOT EXISTS "${CT_LLVM_CMAKE_FILE}")
-message(FATAL_ERROR
-  " CT_LLVM_CMAKE_FILE (${CT_LLVM_CMAKE_FILE}) is invalid.")
+  set(CT_LLVM_CMAKE_FILE "${CT_Clang_INSTALL_DIR}/lib/cmake/clang/ClangConfig.cmake")
+  if(NOT EXISTS "${CT_LLVM_CMAKE_FILE}")
+    message(FATAL_ERROR " CT_LLVM_CMAKE_FILE (${CT_LLVM_CMAKE_FILE}) is invalid.")
+  endif()
 endif()
 
 #===============================================================================
