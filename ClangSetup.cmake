@@ -90,3 +90,11 @@ message("CLANG STATUS:
   Includes (clang)    ${CLANG_INCLUDE_DIRS}
   Includes (llvm)     ${LLVM_INCLUDE_DIRS}"
 )
+
+function(clang_config TARGET)
+  target_compile_definitions(${TARGET} PRIVATE -DCLANG_INCLUDE_PATHS="${Clang_INCLUDE_PATHS}")
+
+  target_link_libraries(${TARGET} PRIVATE clang-cpp)
+
+  llvm_config(${TARGET} USE_SHARED option)
+endfunction()
