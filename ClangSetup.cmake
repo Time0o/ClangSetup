@@ -93,7 +93,7 @@ message("CLANG STATUS:
 
 function(clang_config TARGET)
   target_compile_definitions(${TARGET} PRIVATE -DCLANG_INCLUDE_PATHS="${Clang_INCLUDE_PATHS}")
-
+  target_include_directories(${TARGET} PRIVATE ${CLANG_INCLUDE_DIRS} ${LLVM_INCLUDE_DIRS})
   target_link_libraries(${TARGET} PRIVATE clang-cpp)
 
   llvm_config(${TARGET} USE_SHARED option)
